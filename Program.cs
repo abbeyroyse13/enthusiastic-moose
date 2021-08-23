@@ -1,76 +1,69 @@
 ﻿using System;
 
-Console.WriteLine("Welcome to the Enthusiastic Moose Simulator!");
-Console.WriteLine("--------------------------------------------");
-Console.WriteLine();
+Main();
 
-MooseSays("H I, I'M  E N T H U S I A S T I C !");
-MooseSays("I really am enthusiastic");
-MooseSays("Scream is the best horror movie, you heard it here first folks!");
-
-ScreamQuestion();
-MovieQuestion();
-LoveQuestion();
-
-void ScreamQuestion()
+void Main()
 {
-    bool isTrue = MooseAsks("Is Billy Loomis the best Ghostface?");
+    Console.WriteLine("Welcome to the Enthusiastic Moose Simulator!");
+    Console.WriteLine("--------------------------------------------");
+    Console.WriteLine();
+
+    MooseSays("H I, I'M  E N T H U S I A S T I C !");
+    MooseSays("I really am enthusiastic");
+    MooseSays("Scream is the best horror movie, you heard it here first folks!");
+
+    // ScreamQuestion();
+    // MovieQuestion();
+    // LoveQuestion();
+
+    // doing some refactoring
+
+    MooseQuestion("Is Billy Loomis the best Ghostface?", "THAT MAKES ME ENTHUSIASTIC!!!!!!!!!!!", "Ew, what? You're probably a Roman Bridger stan.");
+    MooseQuestion("What's your favorite scary movie? Is it Scream?", "MINE TOO!!!", "You're lame :|");
+    MooseQuestion("Do you believe in love?", "SAME HERE! I think I've already found my soulmate <3", "WHAT?! But love is amazing! :<");
+}
+
+void MooseQuestion(string question, string yResponse, string nResponse)
+{
+    bool isTrue = MooseAsks($"{question} (Y/N): ");
     if (isTrue)
     {
-        MooseSays("THAT MAKES ME ENTHUSIASTIC!!!!!!!!!!!");
+        MooseSays(yResponse);
     }
     else
     {
-        MooseSays("Ew, what? You're probably a Roman Bridger stan.");
+        MooseSays(nResponse);
     }
 }
 
-void MovieQuestion()
-{
-    bool isTrue = MooseAsks("What's your favorite scary movie? Is it Scream?");
-    if (isTrue)
-    {
-        MooseSays("MINE TOO!!!");
-    }
-    else
-    {
-        MooseSays("You're lame :|");
-    }
-}
+// more refactoring above
 
-void LoveQuestion()
-{
-    bool isTrue = MooseAsks("Do you believe in love?");
-    if (isTrue)
-    {
-        MooseSays("SAME HERE! I think I've already found my soulmate <3");
-    }
-    else
-    {
-        MooseSays("WHAT?! But love is amazing! :<");
-    }
-}
+// void MovieQuestion()
+// {
+//     bool isTrue = MooseAsks("What's your favorite scary movie? Is it Scream?");
+//     if (isTrue)
+//     {
+//         MooseSays("MINE TOO!!!");
+//     }
+//     else
+//     {
+//         MooseSays("You're lame :|");
+//     }
+// }
 
-bool MooseAsks(string question)
-{
-    Console.Write($"{question} (Y/N): ");
-    string answer = Console.ReadLine().ToLower();
+// void LoveQuestion()
+// {
+//     bool isTrue = MooseAsks("Do you believe in love?");
+//     if (isTrue)
+//     {
+//         MooseSays("SAME HERE! I think I've already found my soulmate <3");
+//     }
+//     else
+//     {
+//         MooseSays("WHAT?! But love is amazing! :<");
+//     }
+// }
 
-    while (answer != "y" && answer != "n")
-    {
-        Console.Write($"{question} (Y/N): ");
-        answer = Console.ReadLine().ToLower();
-    }
-
-    if (answer == "y")
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 void MooseSays(string message)
 {
@@ -102,4 +95,25 @@ void MooseSays(string message)
                       \ \'._  ` '_.'
                        `^^` `^^^`
     ");
+}
+
+bool MooseAsks(string question)
+{
+    Console.Write($"{question} (Y/N): ");
+    string answer = Console.ReadLine().ToLower();
+
+    while (answer != "y" && answer != "n")
+    {
+        Console.Write($"{question} (Y/N): ");
+        answer = Console.ReadLine().ToLower();
+    }
+
+    if (answer == "y")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
